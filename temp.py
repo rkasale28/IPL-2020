@@ -102,4 +102,4 @@ while dt <= today:
 
 df = pd.DataFrame(df)
 df.to_csv(DATA_URL, mode='a', header=False, index=False)
-print ("Transferred to CSV")
+print ("Transferred to Excel")
