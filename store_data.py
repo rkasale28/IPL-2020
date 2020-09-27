@@ -36,6 +36,8 @@ while dt <= today:
 
         superover1 = math.nan
         superover2 = math.nan
+        superover_runs1 = math.nan
+        superover_runs2 = math.nan
 
         part1 = divs.contents[0].find_all('span')
         match_no = part1[0].div.contents[0].split(" ")[1]
@@ -59,6 +61,7 @@ while dt <= today:
             superover1 = divs.contents[2].contents[2].contents[0].contents[2]
             result = re.search(r"([0-9/]+)", superover1)
             superover1 = result.group()
+            superover_runs1 = superover1.split("/")[0]
 
         try:
             team2 = divs.contents[3].contents[1].span.div.contents[0].contents[0]
@@ -77,6 +80,7 @@ while dt <= today:
             superover2 = divs.contents[3].contents[2].contents[0].contents[2]
             result = re.search(r"([0-9/]+)", superover2)
             superover2 = result.group()
+            superover_runs2 = superover2.split("/")[0]
 
         new_df = {
                 "Match" : match_no,
@@ -86,11 +90,13 @@ while dt <= today:
                 "Runs1" : runs1,
                 "Overs1" : overs1,
                 "SuperOver1" : superover1,
+                "SuperOver_Runs1" : superover_runs1,
                 "Team2" : team2,
                 "Score2" : score2,
                 "Runs2" : runs2,
                 "Overs2" : overs2,
-                "SuperOver2" : superover2
+                "SuperOver2" : superover2,
+                "SuperOver_Runs2" : superover_runs2                
                 }
 
         df.append(new_df)
