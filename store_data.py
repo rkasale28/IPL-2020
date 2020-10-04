@@ -20,7 +20,7 @@ data = data.iloc[-1:]
 dt = datetime.utcfromtimestamp((data['Date'].values[0]).tolist()/1e9)
 
 delta = timedelta(days=1)
-while dt <= today:
+while dt < today:
     try:
         dt += delta
         date = dt.strftime("%d+%B+%Y").lower()
@@ -96,7 +96,7 @@ while dt <= today:
                 "Runs2" : runs2,
                 "Overs2" : overs2,
                 "SuperOver2" : superover2,
-                "SuperOver_Runs2" : superover_runs2                
+                "SuperOver_Runs2" : superover_runs2
                 }
 
         df.append(new_df)

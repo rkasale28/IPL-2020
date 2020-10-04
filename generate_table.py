@@ -98,4 +98,4 @@ df = df[["M","W","L","NRR","Pts"]]
 df = df.sort_values(["Pts","NRR"],ascending=False)
 
 st.subheader("Points Table")
-st.table(df)
+st.table(df.style.format({"NRR" : "{:+.3f}"}))
