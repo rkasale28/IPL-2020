@@ -46,18 +46,33 @@ while dt <= today:
             superover2 = math.nan
             superover_runs1 = math.nan
             superover_runs2 = math.nan
+            
+            try:
+                team1 = part1[4].contents[0].contents[0]
+                score1 = str(part1[5].contents[0].contents[0]).strip()
+                runs1 = score1.split("/")[0]
+            except:
+                team1 = part1[5].contents[0]
+                score1 = str(part1[6].contents[0].contents[0]).strip()
+                runs1 = score1.split("/")[0]
 
-            team1 = part1[4].contents[0].contents[0]
-            score1 = str(part1[5].contents[0].contents[0]).strip()
-            runs1 = score1.split("/")[0]
+            try:
+                overs1 = part1[6].contents[0]
+                result = re.search(pattern, overs1)
+                overs1 = result.group(1)
+            except:
+                overs1 = part1[7].contents[0]
+                result = re.search(pattern, overs1)
+                overs1 = result.group(1)
 
-            overs1 = part1[6].contents[0]
-            result = re.search(pattern, overs1)
-            overs1 = result.group(1)
-
-            team2 = part1[8].contents[0]
-            score2 = str(part1[9].contents[0].contents[0]).strip()
-            runs2 = score2.split("/")[0]
+            try:
+                team2 = part1[8].contents[0].contents[0]
+                score2 = str(part1[9].contents[0].contents[0]).strip()
+                runs2 = score2.split("/")[0]
+            except:
+                team2 = part1[8].contents[0]
+                score2 = str(part1[9].contents[0].contents[0]).strip()
+                runs2 = score2.split("/")[0]
 
             overs2 = part1[10].contents[0]
             result = re.search(pattern, overs2)
@@ -92,17 +107,32 @@ while dt <= today:
             superover_runs1 = math.nan
             superover_runs2 = math.nan
 
-            team1 = part2[4].contents[0].contents[0].contents[0]
-            score1 = str(part2[6].contents[0].contents[0]).strip()
-            runs1 = score1.split("/")[0]
+            try:
+                team1 = part2[4].contents[0].contents[0].contents[0]
+                score1 = str(part2[6].contents[0].contents[0]).strip()
+                runs1 = score1.split("/")[0]
+            except:
+                team1 = part2[4].contents[0].contents[0]
+                score1 = str(part2[5].contents[0].contents[0]).strip()
+                runs1 = score1.split("/")[0]
 
-            overs1 = part2[7].contents[0]
-            result = re.search(pattern, overs1)
-            overs1 = result.group(1)
+            try:
+                overs1 = part2[7].contents[0]
+                result = re.search(pattern, overs1)
+                overs1 = result.group(1)
+            except:
+                overs1 = part2[6].contents[0]
+                result = re.search(pattern, overs1)
+                overs1 = result.group(1)
 
-            team2 = part2[8].contents[0].contents[0]
-            score2 = str(part2[9].contents[0].contents[0]).strip()
-            runs2 = score2.split("/")[0]
+            try:
+                team2 = part2[8].contents[0].contents[0]
+                score2 = str(part2[9].contents[0].contents[0]).strip()
+                runs2 = score2.split("/")[0]
+            except:
+                team2 = part2[8].contents[0]
+                score2 = str(part2[9].contents[0].contents[0]).strip()
+                runs2 = score2.split("/")[0]
 
             overs2 = part2[10].contents[0]
             result = re.search(pattern, overs2)
@@ -128,7 +158,6 @@ while dt <= today:
 
             print ("Done")
             print ()
-
         except:
             break
 
