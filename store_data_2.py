@@ -46,7 +46,7 @@ while dt <= today:
             superover2 = math.nan
             superover_runs1 = math.nan
             superover_runs2 = math.nan
-            
+
             try:
                 team1 = part1[4].contents[0].contents[0]
                 score1 = str(part1[5].contents[0].contents[0]).strip()
@@ -61,22 +61,41 @@ while dt <= today:
                 result = re.search(pattern, overs1)
                 overs1 = result.group(1)
             except:
-                overs1 = part1[7].contents[0]
-                result = re.search(pattern, overs1)
-                overs1 = result.group(1)
+                try:
+                    overs1 = part1[7].contents[0]
+                    result = re.search(pattern, overs1)
+                    overs1 = result.group(1)
+                except:
+                    superover1 = part1[6].contents[0].contents[2]
+                    result = re.search(r"([0-9/]+)", superover1)
+                    superover1 = result.group()
+                    superover_runs1 = superover1.split("/")[0]
+                    overs1 = 20
 
             try:
                 team2 = part1[8].contents[0].contents[0]
                 score2 = str(part1[9].contents[0].contents[0]).strip()
                 runs2 = score2.split("/")[0]
             except:
-                team2 = part1[8].contents[0]
-                score2 = str(part1[9].contents[0].contents[0]).strip()
-                runs2 = score2.split("/")[0]
+                try:
+                    team2 = part1[8].contents[0]
+                    score2 = str(part1[9].contents[0].contents[0]).strip()
+                    runs2 = score2.split("/")[0]
+                except:
+                    team2 = part1[9].contents[0].contents[0]
+                    score2 = str(part1[10].contents[0].contents[0]).strip()
+                    runs2 = score2.split("/")[0]
 
-            overs2 = part1[10].contents[0]
-            result = re.search(pattern, overs2)
-            overs2 = result.group(1)
+            try:
+                overs2 = part1[10].contents[0]
+                result = re.search(pattern, overs2)
+                overs2 = result.group(1)
+            except:
+                superover2 = part1[10].contents[0].contents[2]
+                result = re.search(r"([0-9/]+)", superover2)
+                superover2 = result.group()
+                superover_runs2 = superover2.split("/")[0]
+                overs2 = 20
 
             new_df = {
                     "Match" : match_no,
@@ -107,6 +126,8 @@ while dt <= today:
             superover_runs1 = math.nan
             superover_runs2 = math.nan
 
+            # for part in part2:
+            #     print (part)
             try:
                 team1 = part2[4].contents[0].contents[0].contents[0]
                 score1 = str(part2[6].contents[0].contents[0]).strip()
@@ -121,22 +142,41 @@ while dt <= today:
                 result = re.search(pattern, overs1)
                 overs1 = result.group(1)
             except:
-                overs1 = part2[6].contents[0]
-                result = re.search(pattern, overs1)
-                overs1 = result.group(1)
+                try:
+                    overs1 = part2[6].contents[0]
+                    result = re.search(pattern, overs1)
+                    overs1 = result.group(1)
+                except:
+                    superover1 = part2[5].contents[0].contents[2]
+                    result = re.search(r"([0-9/]+)", superover1)
+                    superover1 = result.group()
+                    superover_runs1 = superover1.split("/")[0]
+                    overs1 = 20
 
             try:
                 team2 = part2[8].contents[0].contents[0]
                 score2 = str(part2[9].contents[0].contents[0]).strip()
                 runs2 = score2.split("/")[0]
             except:
-                team2 = part2[8].contents[0]
-                score2 = str(part2[9].contents[0].contents[0]).strip()
-                runs2 = score2.split("/")[0]
+                try:
+                    team2 = part2[8].contents[0]
+                    score2 = str(part2[9].contents[0].contents[0]).strip()
+                    runs2 = score2.split("/")[0]
+                except:
+                    team2 = part2[9].contents[0]
+                    score2 = str(part2[10].contents[0].contents[0]).strip()
+                    runs2 = score2.split("/")[0]
 
-            overs2 = part2[10].contents[0]
-            result = re.search(pattern, overs2)
-            overs2 = result.group(1)
+            try:
+                overs2 = part2[10].contents[0]
+                result = re.search(pattern, overs2)
+                overs2 = result.group(1)
+            except:
+                superover2 = part2[10].contents[0].contents[2]
+                result = re.search(r"([0-9/]+)", superover2)
+                superover2 = result.group()
+                superover_runs2 = superover2.split("/")[0]
+                overs2 = 20
 
             new_df = {
                     "Match" : match_no,
@@ -155,7 +195,6 @@ while dt <= today:
                     "SuperOver_Runs2" : superover_runs2
                     }
             df.append(new_df)
-
             print ("Done")
             print ()
         except:
