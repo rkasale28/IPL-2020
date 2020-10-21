@@ -11,8 +11,6 @@ data = pd.read_csv(DATA_URL)
 data['Date'] = pd.to_datetime(data['Date'])
 data = data.sort_values(by=['Date'])
 
-# print (data)
-
 df = []
 for (item,row) in data.iterrows():
     team1 = row["Team1"]
@@ -84,11 +82,9 @@ for (item,row) in data.iterrows():
     df.append(new_df_2)
 
 df = pd.DataFrame(df)
-
-df = df.groupby(["Team"]).sum()
-
-df["Balls For"] = np.floor(df["Overs For"])*6 + df["Overs For"]*10%10
+df["Balls For"] = (np.floor(df["Overs For"])*6 + df["Overs For"]*10%10).astype(int)
 df["Balls Agst"] = np.floor(df["Overs Agst"])*6 + df["Overs Agst"]*10%10
+df = df.groupby(["Team"]).sum()
 
 df["Rate_For"] = (df["Runs For"]/df["Balls For"])*6
 df["Rate_Agst"] = (df["Runs Agst"]/df["Balls Agst"])*6
