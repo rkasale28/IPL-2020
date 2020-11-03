@@ -1,3 +1,4 @@
+import sys
 import requests
 import re
 import math
@@ -286,4 +287,6 @@ while dt < today:
 
 df = pd.DataFrame(df)
 df.to_csv(DATA_URL, mode='a', header=False, index=False)
+sys.stdout.write("\033[F")
+sys.stdout.write("\033[K")
 print ("Transferred to CSV")
